@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/NewGame/Scenes/MainMenu.unity
+    guid: bbb971f230959a8479bb152b3ecff202
+  - enabled: 1
+    path: "Assets/NewGame/Scenes/Persecuci\xF3n.unity"
+    guid: 919c1c5552cec8641a633826c6b516e9
+  - enabled: 1
+    path: Assets/NewGame/Scenes/MundoSemiAbierto.unity
+    guid: 6eb4dd49fb7042e4ab5f14d8fc017d5b
+  m_configObjects: {}
