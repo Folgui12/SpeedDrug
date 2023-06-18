@@ -18,6 +18,8 @@ public class Walter_Car : MonoBehaviour
 
     private float timeToBeHit = 2f;
 
+    private bool move = false; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,11 @@ public class Walter_Car : MonoBehaviour
         if(life <= 0) Debug.Log("Perdiste");
 
         transform.Translate(carMovement);
+
+        if(transform.position.y < -8f && move) 
+        {
+            transform.position += new Vector3(0, .05f, 0);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -65,10 +72,14 @@ public class Walter_Car : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        if(collisionInfo.gameObject.layer == 11) 
+        if(collisionInfo.gameObject.layer == 8) 
         {
-            Destroy(collisionInfo.gameObject);
-            life--;
+            move = false;
         }
+    }
+
+    void OnCollisionExit2D(Collision2D collisionInfo)
+    {
+        if(collisionInfo.gameObject.layer == 8) move = true;
     }
 }

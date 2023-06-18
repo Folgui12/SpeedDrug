@@ -10,15 +10,17 @@ public class Enemy : MonoBehaviour
 
     public bool canSpawn = true;
 
-    public bool operWorld = false;
+    public Sprite[] spritesToPick;
 
-    public Walter_Car player;
+    private int rand;
 
+    public float speed = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rand = Random.Range(0, spritesToPick.Length);
+        GetComponent<SpriteRenderer>().sprite = spritesToPick[rand];
     }
 
     // Update is called once per frame
@@ -26,11 +28,12 @@ public class Enemy : MonoBehaviour
     {
         timerRoad += Time.deltaTime;
 
-        transform.position -= new Vector3(0, 3, 0) * Time.deltaTime * 1.5f;
+        transform.position -= new Vector3(0, speed, 0) * Time.deltaTime * 1.5f;
 
         if(timerRoad > roadEnemyLifeTime) {
             Destroy(gameObject);
         }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)

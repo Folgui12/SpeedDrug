@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private List<Enemy> Enemies;
 
     private int stage = 3;
 
@@ -16,6 +15,12 @@ public class GameManager : MonoBehaviour
     private float enemyCooldown = 4f;
 
     private float spawnEnemy;
+
+    public Parallax map;
+
+    public Enemy enemy;
+
+    private float increaseSpeed = .1f;
 
     void Awake()
     {
@@ -45,7 +50,12 @@ public class GameManager : MonoBehaviour
         if(playTime > stageTime)
         {
             playTime = 0;
-            if(stage < 8) stage++;
+            if(stage < 8) 
+            {
+                map.parallaxVelocity += new Vector2(0, 0.2f);
+                enemy.speed += 0.2f;
+                stage++;
+            }
             else SceneLoader.Instance.NextScene();
         }
 
