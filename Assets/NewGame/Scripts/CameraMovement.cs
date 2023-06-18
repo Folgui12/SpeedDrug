@@ -10,9 +10,7 @@ public class CameraMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        following();
-        
+        following();   
     }
 
     void following()

@@ -56,7 +56,7 @@ public class Walter_Open_World : MonoBehaviour
             {
                 imBoosted = false;
                 boostCounter = 0f;
-                speed = 20; 
+                speed = 18; 
             }
         }
 
@@ -74,7 +74,7 @@ public class Walter_Open_World : MonoBehaviour
             life--;
             canBeHit = false;
         }
-        if(other.gameObject.layer == 4) speed = 10;
+        if(other.gameObject.layer == 4) speed = 5;
     }
 
     public void ApplyBoost()
@@ -84,7 +84,7 @@ public class Walter_Open_World : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.layer == 4) speed = 20;
+        if(other.gameObject.layer == 4) speed = 10;
     }
 
     private void OnCollisionEnter2D(Collision2D collisionInfo)
@@ -94,5 +94,10 @@ public class Walter_Open_World : MonoBehaviour
             Destroy(collisionInfo.gameObject);
             life--;
         }
+        /*if(collisionInfo.gameObject.layer == 10)
+        {
+            Debug.Log("Choque Edificio");
+            rb.AddForce(Vector2.down * 50f);
+        }*/
     }
 }

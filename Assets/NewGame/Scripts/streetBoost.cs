@@ -16,15 +16,10 @@ public class streetBoost : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    /*void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == 7)
-        {
-            Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
-
-            pj.speed = 25;
-        }
-    }
+        
+    }*/
 
     void OnTriggerExit2D(Collider2D other)
     {
@@ -32,7 +27,17 @@ public class streetBoost : MonoBehaviour
         {
             Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
 
-            pj.speed = 20;
+            pj.speed = 10;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 7)
+        {
+            Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
+
+            pj.speed = 13;
         }
     }
 }
