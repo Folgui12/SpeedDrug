@@ -7,9 +7,7 @@ public class LevelController : MonoBehaviour
 
     public static LevelController Instance;
     public Enemy test;
-
     private float random;
-
     private int spawnPosition;
 
     void Awake()
@@ -17,18 +15,6 @@ public class LevelController : MonoBehaviour
         if (Instance == null)
             Instance = this;
         else Destroy(this);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void CreateEnemy()
@@ -51,33 +37,27 @@ public class LevelController : MonoBehaviour
     {
         int aux = 0;
 
-        random = Random.Range(0, 8);
+        random = Random.Range(0, 6);
 
         switch(random)
         {
             case 0:
-                aux = -8;
+                aux = -5;
                 break;
             case 1:
-                aux = -6;
+                aux = -3;
                 break;
             case 2:
-                aux = -4;
+                aux = -1;
                 break;
             case 3:
-                aux = -2;
+                aux = 1;
                 break;
             case 4:
-                aux = 2;
+                aux = 3;
                 break;
             case 5:
-                aux = 4;
-                break;
-            case 6:
-                aux = 6;
-                break;
-            case 7:
-                aux = 8;
+                aux = 5;
                 break;
             default:
                 break;

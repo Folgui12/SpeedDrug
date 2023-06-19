@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private int stage = 3;
+    [SerializeField] private int stage = 1;
 
     private float stageTime = 20f;
 
@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviour
     public Parallax map;
 
     public Enemy enemy;
+    
+    public Camera cam;
 
-    private float increaseSpeed = .1f;
+    private bool tellingStory = false;
+
+    private Animator anim;
 
     void Awake()
     {
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         DeployEnemies();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,22 +46,17 @@ public class GameManager : MonoBehaviour
         spawnEnemy += Time.deltaTime;
         playTime += Time.deltaTime;
 
-        if(spawnEnemy > enemyCooldown)
+        if(spawnEnemy > enemyCooldown && !tellingStory)
         {
             spawnEnemy = 0;
             DeployEnemies();
         }
 
-        if(playTime > stageTime)
+        if(playTime > stageTime && !tellingStory)
         {
-            playTime = 0;
-            if(stage < 8) 
-            {
-                map.parallaxVelocity += new Vector2(0, 0.2f);
-                enemy.speed += 0.2f;
-                stage++;
-            }
-            else SceneLoader.Instance.NextScene();
+            tellingStory = true;
+            anim.SetBool("StartTransition", true);
+            map.parallaxVelocity = new Vector2(0, .5f);
         }
 
         if(Input.GetKeyDown(KeyCode.N)) SceneLoader.Instance.NextScene();
@@ -69,5 +69,27 @@ public class GameManager : MonoBehaviour
         {
             LevelController.Instance.CreateEnemy();
         }
+    }
+
+    public void TransitionBack()
+    {
+        anim.SetBool("StartTransition", false);
+        anim.SetBool("GoBack", true);
+    }
+
+    public void NextStage()
+    {
+        tellingStory = false;
+        anim.SetBool("StartTransition", false);
+        anim.SetBool("GoBack", false);
+        if(stage < 4) 
+        {
+            playTime = 0;
+            map.parallaxVelocity += new Vector2(0, 0.5f);
+            enemy.speed += 0.5f;
+            enemyCooldown -= 0.5f;
+            stage++;
+        }
+        else SceneLoader.Instance.NextScene();
     }
 }
