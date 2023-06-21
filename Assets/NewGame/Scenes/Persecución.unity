@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.7731, y: 1.6371}
-  m_SizeDelta: {x: 192.7934, y: 378.7259}
+  m_AnchoredPosition: {x: -3.7609, y: -5.2801}
+  m_SizeDelta: {x: 252.69, y: 409.0393}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375209204
 MonoBehaviour:
@@ -182,8 +182,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -453,8 +453,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.70847726, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.39901733, y: 0}
-  m_SizeDelta: {x: -0.79797363, y: 0}
+  m_AnchoredPosition: {x: -27.223007, y: 0}
+  m_SizeDelta: {x: 54.446, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1124298502
 MonoBehaviour:
@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -587,7 +587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298816289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.43, y: -10.42, z: 0}
+  m_LocalPosition: {x: 2.43, y: -10, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.5714286}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -787,11 +787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0412bd12d61bc41bc0ee35efe7fea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 1
+  stage: 3
   map: {fileID: 1753561577}
   enemy: {fileID: -7454273114827118578, guid: 89e30e88a7ae8444594ebc2faae24ba5, type: 3}
   cam: {fileID: 1311127240}
-  activeTransition: 0
 --- !u!114 &1311127246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,10 +806,16 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1124298500}
   dialogueText: {fileID: 375209204}
   dialogue:
-  - "M\xE1s r\xE1pido Walter, Declan nos pisa los talones, necesitamos llegar al
-    pueblo m\xE1s cercano"
-  - Dale flaco que nos alcanzan por el amor de dios
-  wordSpeed: 0.1
+  - "Walter:- D\xE9jame en paz Declan, acepta la oferta o l\xE1rgate."
+  - Declan:- Vine en busca de algo, y no pienso irme sin conseguirlo.
+  - Walter:- No te gusta perder, respetable. Funcionarias en mi equipo.
+  - "Declan:- Sobre mi cadaver Heisenberg, dame lo que es m\xEDo."
+  - "Walter:- Lo que es MIO, querr\xE1s decir."
+  - "Declan:- No hagas las cosas m\xE1s dif\xEDciles de lo que deber\xEDan."
+  - "Walter:- Me gusta lo dif\xEDcil."
+  - "Declan:- No le tengo miedo a un desaf\xEDo."
+  - "Walter:- Alc\xE1nzame entonces, si es que puedes."
+  wordSpeed: 0.04
 --- !u!1 &1753561572
 GameObject:
   m_ObjectHideFlags: 0

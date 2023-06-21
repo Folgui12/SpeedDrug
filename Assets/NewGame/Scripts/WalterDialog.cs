@@ -5,28 +5,42 @@ using UnityEngine.UI;
 
 public class WalterDialog : MonoBehaviour
 {
-
     public GameObject dialoguePanel;
     public Text dialogueText;
     public string[] dialogue;
+    private string[] dialogue2 = {"Declan:- Detente ya.",
+"Walter:- Te dire que ocurrirá si no lo hago: a 2 km se encuentra un pueblo, en el cual entraré y continuaré alejándome de ti. Vos tenes dos opciones: detenerte y evitar desastres, o perseguirme y poner en riesgo la vida de muchos ciudadanos. Tu eliges Declan.",
+"Declan:-  ¿Intentas convencerme de que si alguien muere será mi culpa? ¿Qué clase de manipulación es esa Heisenberg? Necesitarás mucho más que eso para hacer que me detenga.",
+"Walter:- Mirenlo, el pequeño Declan no tiene miedo de mancharse las manos. Estoy ansioso por verlo.",
+"Declan:- No me das miedo.",
+"Walter:- Entonces sígueme que nuestro destino está adelante."};
     public float wordSpeed;
     private int index = 0;
-    private bool canType = false;
+    private bool canTypeFirst = false;
+    private float timer = 0f;
+    private float pauseTime = 3f;
+    private bool startCountDown = false;
+    private bool secondRound = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(canType)
+        if(canTypeFirst)
         {
             dialoguePanel.SetActive(true);
             StartCoroutine(Typing());
-            canType = false;
+            canTypeFirst = false;
         }
-        if(dialogueText.text == dialogue[index])
+        if(startCountDown)
         {
-            index++;
+            timer += Time.deltaTime;
+        }
+        if(timer > pauseTime)
+        {
             zeroText();
             GameManager.Instance.TransitionBack();
+            startCountDown = false;
+            timer = 0;
         }
         
     }
@@ -35,7 +49,6 @@ public class WalterDialog : MonoBehaviour
     {
         dialogueText.text = "";
         dialoguePanel.SetActive(false);
-        canType = false;
     }
 
     IEnumerator Typing()
@@ -45,6 +58,7 @@ public class WalterDialog : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
+        NextLine();
     }
 
     private void NextLine()
@@ -52,12 +66,13 @@ public class WalterDialog : MonoBehaviour
         if(index < dialogue.Length - 1)
         {
             index++;
-            dialogueText.text = "";
+            dialogueText.text += "\n \n";
             StartCoroutine(Typing());
         }
-        else
+        else 
         {
-            zeroText();
+            startCountDown = true;
+            secondRound = true;
         }
     }
 
@@ -68,6 +83,8 @@ public class WalterDialog : MonoBehaviour
 
     public void StartTyping()
     {
-        canType = true;
+        canTypeFirst = true;
+        if(secondRound) dialogue = dialogue2;
+        index = 0;
     }
 }

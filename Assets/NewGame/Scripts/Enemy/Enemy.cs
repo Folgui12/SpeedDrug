@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float roadEnemyLifeTime = 7f;
+    private float roadEnemyLifeTime = 3f;
 
     private float timerRoad; 
 

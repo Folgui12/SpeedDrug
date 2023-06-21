@@ -49,7 +49,7 @@ public class Walter_Car : MonoBehaviour
 
         transform.Translate(carMovement);
 
-        if(transform.position.y < -8f && move) 
+        if(transform.position.y < -10f && move) 
         {
             transform.position += new Vector3(0, .05f, 0);
         }

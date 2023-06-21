@@ -6,13 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private int stage = 1;
+    [SerializeField] private int stage;
 
     private float stageTime = 20f;
 
     private float playTime;
 
-    private float enemyCooldown = 4f;
+    private float enemyCooldown = 3.5f;
 
     private float spawnEnemy;
 
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
             tellingStory = true;
             anim.SetBool("StartTransition", true);
             map.parallaxVelocity = new Vector2(0, .5f);
+            if(stage == 5) SceneLoader.Instance.NextScene();
         }
 
         if(Input.GetKeyDown(KeyCode.N)) SceneLoader.Instance.NextScene();
@@ -82,14 +83,10 @@ public class GameManager : MonoBehaviour
         tellingStory = false;
         anim.SetBool("StartTransition", false);
         anim.SetBool("GoBack", false);
-        if(stage < 4) 
-        {
-            playTime = 0;
-            map.parallaxVelocity += new Vector2(0, 0.5f);
-            enemy.speed += 0.5f;
-            enemyCooldown -= 0.5f;
-            stage++;
-        }
-        else SceneLoader.Instance.NextScene();
+        playTime = 0;
+        map.parallaxVelocity += new Vector2(0, 0.5f);
+        enemy.speed += 0.5f;
+        enemyCooldown -= 0.5f;
+        stage++;
     }
 }
