@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     private Animator anim;
 
+    public Transform leftCollider;
+    public Transform car;
+
     void Awake()
     {
         if (Instance == null)
@@ -88,5 +91,12 @@ public class GameManager : MonoBehaviour
         enemy.speed += 0.5f;
         enemyCooldown -= 0.5f;
         stage++;
+    }
+
+    public void MoveCollider()
+    {
+        if(leftCollider.position.x == -7) leftCollider.position = new Vector3(-1, -4, 0);
+        else if (leftCollider.position.x == -1) leftCollider.position = new Vector3(-7, -4, 0);
+        car.position = new Vector3(2, -10, 0);
     }
 }

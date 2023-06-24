@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EnemyOpenWorld : MonoBehaviour
 {
-
-    private float positionX;
-    private float positionY;
-
     public GameObject pj;
 
     public float speed;
@@ -37,6 +33,6 @@ public class EnemyOpenWorld : MonoBehaviour
         
         float angle = Mathf.Atan2(director.y, director.x) * Mathf.Rad2Deg;
 
-        rb.rotation = angle;
+        rb.rotation = angle - 90f;
     }
 }

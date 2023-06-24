@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: "Assets/NewGame/Scenes/Persecuci\xF3n.unity"
     guid: 919c1c5552cec8641a633826c6b516e9
   - enabled: 1
+    path: Assets/NewGame/Scenes/EjemploMica.unity
+    guid: deb55f3014406a04ba36e78e32e1b380
+  - enabled: 0
     path: Assets/NewGame/Scenes/MundoSemiAbierto.unity
     guid: 6eb4dd49fb7042e4ab5f14d8fc017d5b
   m_configObjects: {}

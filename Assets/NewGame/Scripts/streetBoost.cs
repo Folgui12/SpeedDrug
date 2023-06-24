@@ -28,6 +28,7 @@ public class streetBoost : MonoBehaviour
             Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
 
             pj.speed = 10;
+            pj.onWater = false;
         }
     }
 
@@ -36,8 +37,10 @@ public class streetBoost : MonoBehaviour
         if(other.gameObject.layer == 7)
         {
             Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
-
-            pj.speed = 13;
+            if(!pj.onWater)
+            {
+                pj.speed = 15;
+            }
         }
     }
 }

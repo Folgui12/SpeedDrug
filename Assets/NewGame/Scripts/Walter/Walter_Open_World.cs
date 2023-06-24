@@ -10,11 +10,6 @@ public class Walter_Open_World : MonoBehaviour
 
     public int life = 5;
 
-    private float recoveryTime;
-
-    private float timeToBeHit = 2f;
-
-
     public float angle = 1.5f;
 
     private Rigidbody2D rb;
@@ -24,27 +19,24 @@ public class Walter_Open_World : MonoBehaviour
     private float boostCounter = 0f;
     private float boostSpeed = 30;
 
+    public bool onWater = false;
+
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        recoveryTime += Time.deltaTime;
-
-        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 1) * angle;
-        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 1) * angle;
+        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 5) * angle;
+        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 5) * angle;
 
         carMovement = new Vector3(0, speed, 0) * Time.deltaTime;
-
-        if(recoveryTime > timeToBeHit && !canBeHit)
-        {
-            canBeHit = true;
-            recoveryTime = 0;
-        }
 
         if(imBoosted)
         {
@@ -72,14 +64,25 @@ public class Walter_Open_World : MonoBehaviour
         if(other.gameObject.layer == 8 && canBeHit)
         {
             life--;
-            canBeHit = false;
+            anim.SetTrigger("GotHit");
         }
-        if(other.gameObject.layer == 4) speed = 5;
     }
 
     public void ApplyBoost()
     {
         imBoosted = true;
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 4) 
+        {
+            speed = 5;
+            onWater = true;
+        }
+
+
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -89,15 +92,26 @@ public class Walter_Open_World : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        if(collisionInfo.gameObject.layer == 11) 
+        if(collisionInfo.gameObject.layer == 11 || collisionInfo.gameObject.layer == 12) 
         {
             Destroy(collisionInfo.gameObject);
             life--;
+            anim.SetTrigger("GotHit");
         }
-        /*if(collisionInfo.gameObject.layer == 10)
+        if(collisionInfo.gameObject.layer == 8)
         {
-            Debug.Log("Choque Edificio");
-            rb.AddForce(Vector2.down * 50f);
-        }*/
+            life--;
+            anim.SetTrigger("GotHit");
+        }
+    }
+
+    public void CanBeHit()
+    {
+        canBeHit = true;
+    }
+
+    public void CantBeHit()
+    {
+        canBeHit = false;
     }
 }

@@ -51,7 +51,7 @@ public class Walter_Car : MonoBehaviour
 
         if(transform.position.y < -10f && move) 
         {
-            transform.position += new Vector3(0, .05f, 0);
+            transform.position += new Vector3(0, .02f, 0);
         }
     }
 
