@@ -33,8 +33,8 @@ public class Walter_Open_World : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 5) * angle;
-        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 5) * angle;
+        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 1) * angle;
+        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 1) * angle;
 
         carMovement = new Vector3(0, speed, 0) * Time.deltaTime;
 
