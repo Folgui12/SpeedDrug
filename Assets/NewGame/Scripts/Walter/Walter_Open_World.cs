@@ -27,6 +27,10 @@ public class Walter_Open_World : MonoBehaviour
 
     public Transform spawnPoint;
 
+    private float noDamageTime = 2f;
+
+    private float timer;
+
     public int tries = 3;
 
     // Start is called before the first frame update
@@ -41,8 +45,8 @@ public class Walter_Open_World : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 1) * angle;
-        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 1) * angle;
+        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 5) * angle;
+        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 5) * angle;
 
         carMovement = new Vector3(0, speed, 0) * Time.deltaTime;
 
@@ -58,6 +62,17 @@ public class Walter_Open_World : MonoBehaviour
                 boostCounter = 0f;
                 speed = 17; 
             }
+        }
+
+        if(!canBeHit)
+        {
+            timer += Time.deltaTime;
+
+            if(timer > noDamageTime) {
+                timer = 0;
+                canBeHit = true;
+            }
+
         }
     
         transform.Translate(carMovement);
@@ -82,7 +97,7 @@ public class Walter_Open_World : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.layer == 4) speed = 10;
+        if(other.gameObject.layer == 4) speed = 15;
     }
 
     private void OnCollisionEnter2D(Collision2D collisionInfo)
@@ -90,41 +105,33 @@ public class Walter_Open_World : MonoBehaviour
         if(collisionInfo.gameObject.layer == 11 || collisionInfo.gameObject.layer == 12) 
         {
             Destroy(collisionInfo.gameObject);
-            life--;
+            if(canBeHit) lifeController();
+            canBeHit = false;
             anim.SetTrigger("GotHit");
         }
         
         if(collisionInfo.gameObject.layer == 8 && canBeHit) //&& canBeHit
         {
-            life--;
+            lifeController();
             anim.SetTrigger("GotHit");
             var enemy = collisionInfo.gameObject.GetComponent<EnemyOpenWorld>();
             enemy.reachWalter();
-            Debug.Log("Choque");
+            canBeHit = false;
         }
 
         if(collisionInfo.gameObject.layer == 13 && canBeHit) //&& canBeHit
         {
-            life--;
+            lifeController();
+            canBeHit = false;
             anim.SetTrigger("GotHit");
             var enemy = collisionInfo.gameObject.GetComponent<PoliceMovement>();
             enemy.reachWalter();
-            Debug.Log("Choque");
         }
-    }
-
-    public void CanBeHit()
-    {
-        canBeHit = true;
-    }
-
-    public void CantBeHit()
-    {
-        canBeHit = false;
     }
 
     public void lifeController()
     {
+        life--;
         if(life < 5 && life > 2)
         {
             smoke1.Play();
@@ -138,6 +145,7 @@ public class Walter_Open_World : MonoBehaviour
         {
             life = 5;
             transform.position = spawnPoint.position;
+            speed = 15;
             smoke2.Stop();
             tries--;
             if(tries == 0) SceneLoader.Instance.Lose();

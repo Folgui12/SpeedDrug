@@ -7,6 +7,8 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance; 
 
+    public Animator transition;
+
     void Awake()
     {
         if (Instance == null)
@@ -14,22 +16,14 @@ public class SceneLoader : MonoBehaviour
         else Destroy(this);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(SceneManager.GetActiveScene().buildIndex < 3) StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+
+        else if(Input.GetKeyDown(KeyCode.R) && SceneManager.GetActiveScene().buildIndex >= 3)
+        {
+            StartCoroutine(LoadLevel(0));
+        }
     }
 
     public void Win()
@@ -40,5 +34,19 @@ public class SceneLoader : MonoBehaviour
     public void Lose()
     {
         SceneManager.LoadScene(4);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("FadeIn");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(levelIndex);
     }
 }

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int stage;
 
-    private float stageTime = 20f;
+    private float stageTime = 15f;
 
     private float playTime;
 
@@ -80,15 +80,8 @@ public class GameManager : MonoBehaviour
         anim.SetBool("GoBack", false);
         playTime = 0;
         map.parallaxVelocity += new Vector2(0, 0.5f);
-        enemy.speed += 0.5f;
-        enemyCooldown -= 0.5f;
+        enemy.speed += 0.1f;
+        enemyCooldown -= 0.1f;
         stage++;
-    }
-
-    public void MoveCollider()
-    {
-        if(leftCollider.position.x == -7) leftCollider.position = new Vector3(-1, -4, 0);
-        else if (leftCollider.position.x == -1) leftCollider.position = new Vector3(-7, -4, 0);
-        car.position = new Vector3(2, -10, 0);
     }
 }

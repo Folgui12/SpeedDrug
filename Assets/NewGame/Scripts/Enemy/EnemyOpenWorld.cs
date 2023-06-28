@@ -51,6 +51,7 @@ public class EnemyOpenWorld : MonoBehaviour
 
     public void reachWalter()
     {
+        Debug.Log("freno");
         touchWalter = true;
         speed = 10;
     }
