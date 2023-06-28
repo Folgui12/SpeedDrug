@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
         restante -= Time.deltaTime; 
         if(restante < 1 && walter.tries > 0)
         {
-            // Pantalla de Victoria
+            SceneLoader.Instance.Win();
         }
 
         int tempMin = Mathf.FloorToInt(restante / 60);

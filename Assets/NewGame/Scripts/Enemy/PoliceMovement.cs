@@ -6,7 +6,7 @@ public class PoliceMovement : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
 
-    [SerializeField] private float speed;
+    public float speed;
 
     [SerializeField] private Transform characterPos;
 
@@ -17,6 +17,10 @@ public class PoliceMovement : MonoBehaviour
     private bool movingTo = false;
     public walterDetected walterOnTrigger;
     private Rigidbody2D rb; 
+
+    private float timerSlow = 0;
+    private bool touchWalter = false;
+    private float slowCountDown = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +34,16 @@ public class PoliceMovement : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(transform.position, characterPos.position);
+
+        if(touchWalter)
+        {
+            timerSlow += Time.deltaTime;
+        }
+
+        if(timerSlow > slowCountDown)
+        {
+            speed = 15; 
+        }
 
         if(!movingTo)
         {
@@ -90,5 +104,11 @@ public class PoliceMovement : MonoBehaviour
         float angle = Mathf.Atan2(director.y, director.x) * Mathf.Rad2Deg;
 
         rb.rotation = angle - 90f;
+    }
+
+    public void reachWalter()
+    {
+        touchWalter = true;
+        speed = 10;
     }
 }

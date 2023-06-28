@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private float playTime;
 
-    private float enemyCooldown = 3.5f;
+    private float enemyCooldown = .8f;
 
     private float spawnEnemy;
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DeployEnemies();
+        LevelController.Instance.CreateEnemy();
         anim = GetComponent<Animator>();
     }
 
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         if(spawnEnemy > enemyCooldown && !tellingStory)
         {
             spawnEnemy = 0;
-            DeployEnemies();
+            LevelController.Instance.CreateEnemy();
         }
 
         if(playTime > stageTime && !tellingStory)
@@ -65,14 +65,6 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.N)) SceneLoader.Instance.NextScene();
 
-    }
-
-    private void DeployEnemies()
-    {
-        for(int i = 0; i < stage; i++)
-        {
-            LevelController.Instance.CreateEnemy();
-        }
     }
 
     public void TransitionBack()

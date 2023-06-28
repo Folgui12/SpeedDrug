@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NewGame/Scenes/EjemploMica.unity
     guid: deb55f3014406a04ba36e78e32e1b380
+  - enabled: 1
+    path: Assets/NewGame/Scenes/Win.unity
+    guid: 7c6cfcfccf462e64984928aa2fa816b3
+  - enabled: 1
+    path: Assets/NewGame/Scenes/Lose.unity
+    guid: 3f91fa1f0a2bf564fbabe91044d00c1e
   - enabled: 0
     path: Assets/NewGame/Scenes/MundoSemiAbierto.unity
     guid: 6eb4dd49fb7042e4ab5f14d8fc017d5b

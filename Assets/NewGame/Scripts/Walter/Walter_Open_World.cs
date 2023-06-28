@@ -29,7 +29,6 @@ public class Walter_Open_World : MonoBehaviour
 
     public int tries = 3;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,15 +65,6 @@ public class Walter_Open_World : MonoBehaviour
         Debug.Log(life);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.layer == 8 && canBeHit)
-        {
-            life--;
-            anim.SetTrigger("GotHit");
-        }
-    }
-
     public void ApplyBoost()
     {
         imBoosted = true;
@@ -84,7 +74,7 @@ public class Walter_Open_World : MonoBehaviour
     {
         if(other.gameObject.layer == 4) 
         {
-            speed = 5;
+            speed = 10;
             onWater = true;
         }
 
@@ -103,10 +93,23 @@ public class Walter_Open_World : MonoBehaviour
             life--;
             anim.SetTrigger("GotHit");
         }
-        if(collisionInfo.gameObject.layer == 8)
+        
+        if(collisionInfo.gameObject.layer == 8 && canBeHit) //&& canBeHit
         {
             life--;
             anim.SetTrigger("GotHit");
+            var enemy = collisionInfo.gameObject.GetComponent<EnemyOpenWorld>();
+            enemy.reachWalter();
+            Debug.Log("Choque");
+        }
+
+        if(collisionInfo.gameObject.layer == 13 && canBeHit) //&& canBeHit
+        {
+            life--;
+            anim.SetTrigger("GotHit");
+            var enemy = collisionInfo.gameObject.GetComponent<PoliceMovement>();
+            enemy.reachWalter();
+            Debug.Log("Choque");
         }
     }
 
@@ -137,7 +140,7 @@ public class Walter_Open_World : MonoBehaviour
             transform.position = spawnPoint.position;
             smoke2.Stop();
             tries--;
-            if(tries == 0) {} // Pantalla de Derrota
+            if(tries == 0) SceneLoader.Instance.Lose();
         }
     }
 }

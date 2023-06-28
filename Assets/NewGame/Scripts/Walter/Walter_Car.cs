@@ -63,6 +63,7 @@ public class Walter_Car : MonoBehaviour
             canBeHit = false;
         }
         if(other.gameObject.layer == 4) speed = 7;
+        if(other.gameObject.tag == "Lose") SceneLoader.Instance.Lose();
     }
 
     void OnTriggerExit2D(Collider2D other)

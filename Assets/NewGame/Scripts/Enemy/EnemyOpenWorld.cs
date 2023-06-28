@@ -12,6 +12,10 @@ public class EnemyOpenWorld : MonoBehaviour
 
     private Vector3 movement;
 
+    private float timerSlow = 0;
+    private bool touchWalter = false;
+    private float slowCountDown = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,15 @@ public class EnemyOpenWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(touchWalter)
+        {
+            timerSlow += Time.deltaTime;
+        }
+
+        if(timerSlow > slowCountDown)
+        {
+            speed = 15;
+        }
 
         Vector3 director = (pj.transform.position - transform.position).normalized;
 
@@ -34,5 +47,11 @@ public class EnemyOpenWorld : MonoBehaviour
         float angle = Mathf.Atan2(director.y, director.x) * Mathf.Rad2Deg;
 
         rb.rotation = angle - 90f;
+    }
+
+    public void reachWalter()
+    {
+        touchWalter = true;
+        speed = 10;
     }
 }

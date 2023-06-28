@@ -31,4 +31,14 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void Win()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void Lose()
+    {
+        SceneManager.LoadScene(4);
+    }
 }
