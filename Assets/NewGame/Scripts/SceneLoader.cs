@@ -16,14 +16,17 @@ public class SceneLoader : MonoBehaviour
         else Destroy(this);
     }
 
-    public void NextScene()
+    void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex < 3) StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-
-        else if(Input.GetKeyDown(KeyCode.R) && SceneManager.GetActiveScene().buildIndex >= 3)
+        if(Input.GetKeyDown(KeyCode.R) && SceneManager.GetActiveScene().buildIndex >= 3)
         {
             StartCoroutine(LoadLevel(0));
         }
+    }
+
+    public void NextScene()
+    {
+        if(SceneManager.GetActiveScene().buildIndex < 3) StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void Win()
