@@ -20,8 +20,8 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        restante -= Time.deltaTime; 
-        if(restante < 1 && walter.tries > 0)
+        if(restante > 0) restante -= Time.deltaTime; 
+        if(restante < 1 && walter.tries > 0 && walter.onSafeArea)
         {
             SceneLoader.Instance.Win();
         }

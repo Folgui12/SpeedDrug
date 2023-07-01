@@ -30,6 +30,18 @@ public class PoliceMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void FixedUpdate()
+    {
+        if(!movingTo)
+        {
+            Move();
+        }
+        else
+        {
+            moveToCharacter();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -43,15 +55,6 @@ public class PoliceMovement : MonoBehaviour
         if(timerSlow > slowCountDown)
         {
             speed = 15; 
-        }
-
-        if(!movingTo)
-        {
-            Move();
-        }
-        else
-        {
-            moveToCharacter();
         }
 
         if(walterOnTrigger.enemyDetected)

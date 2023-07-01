@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Walter_Open_World : MonoBehaviour
 {
@@ -33,6 +34,15 @@ public class Walter_Open_World : MonoBehaviour
 
     public int tries = 3;
 
+    public Image bar;
+    public GameObject w1;
+    public GameObject w2;
+
+    private float maxLife = 5;
+
+    public bool onSafeArea = false;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,13 +52,17 @@ public class Walter_Open_World : MonoBehaviour
         smoke2.Stop();
     }
 
+    void FixedUpdate()
+    {
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
+    }
+    
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 5) * angle;
-        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 5) * angle;
-
-        carMovement = new Vector3(0, speed, 0) * Time.deltaTime;
+        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 1) * angle;
+        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 1) * angle;
 
         if(imBoosted)
         {
@@ -74,10 +88,9 @@ public class Walter_Open_World : MonoBehaviour
             }
 
         }
-    
-        transform.Translate(carMovement);
 
-        Debug.Log(life);
+        LifeBarManager();
+    
     }
 
     public void ApplyBoost()
@@ -127,6 +140,8 @@ public class Walter_Open_World : MonoBehaviour
             var enemy = collisionInfo.gameObject.GetComponent<PoliceMovement>();
             enemy.reachWalter();
         }
+
+        if(collisionInfo.gameObject.layer == 14) onSafeArea = true;
     }
 
     public void lifeController()
@@ -148,7 +163,14 @@ public class Walter_Open_World : MonoBehaviour
             speed = 15;
             smoke2.Stop();
             tries--;
+            if(tries == 2) w1.SetActive(false);
+            else if(tries == 1) w2.SetActive(false);
             if(tries == 0) SceneLoader.Instance.Lose();
         }
+    }
+
+    private void LifeBarManager()
+    {
+        bar.fillAmount = life / maxLife;
     }
 }

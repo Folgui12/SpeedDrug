@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private float playTime;
 
-    private float enemyCooldown = .8f;
+    private float enemyCooldown = 1f;
 
     private float spawnEnemy;
 
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         {
             tellingStory = true;
             anim.SetBool("StartTransition", true);
-            map.parallaxVelocity = new Vector2(0, .5f);
+            map.parallaxVelocity = new Vector2(0, .3f);
             if(stage == 5) SceneLoader.Instance.NextScene();
         }
 

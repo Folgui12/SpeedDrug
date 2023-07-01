@@ -31,7 +31,9 @@ public class PowerUp : MonoBehaviour
             }
             else if(isHeal)
             {
+                Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
 
+                if(pj.life < 5) pj.life++;
             }
             else if(isBoost)
             {
