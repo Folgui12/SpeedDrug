@@ -21,6 +21,16 @@ public class WalterDialog : MonoBehaviour
     private float pauseTime = 3f;
     private bool startCountDown = false;
     private bool secondRound = false;
+    private bool walterSpeaking = true;
+    
+    private AudioSource source;
+    public AudioClip hablaWalter;
+    public AudioClip hablaDeclan;
+
+    void Start()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -49,10 +59,14 @@ public class WalterDialog : MonoBehaviour
     {
         dialogueText.text = "";
         dialoguePanel.SetActive(false);
+        source.volume = 0.2f;
     }
 
     IEnumerator Typing()
     {
+        source.volume = 0.4f;
+        if(walterSpeaking) source.PlayOneShot(hablaWalter);
+        else source.PlayOneShot(hablaDeclan);
         foreach(char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
@@ -63,6 +77,7 @@ public class WalterDialog : MonoBehaviour
 
     private void NextLine()
     {
+        walterSpeaking = !walterSpeaking;
         if(index < dialogue.Length - 1)
         {
             index++;

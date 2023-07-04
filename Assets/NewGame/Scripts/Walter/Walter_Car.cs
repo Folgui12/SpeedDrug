@@ -20,10 +20,12 @@ public class Walter_Car : MonoBehaviour
 
     private bool move = false; 
 
-    // Start is called before the first frame update
+    private AudioSource choque;
+    public AudioClip ruidoChoque;
+
     void Start()
     {
-        
+        choque = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -75,6 +77,7 @@ public class Walter_Car : MonoBehaviour
     {
         if(collisionInfo.gameObject.layer == 8) 
         {
+            choque.PlayOneShot(ruidoChoque);
             move = false;
         }
     }

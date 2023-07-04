@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public Transform leftCollider;
     public Transform car;
+    private AudioSource source;
+    public AudioClip ruidoLlamada;
 
     void Awake()
     {
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         LevelController.Instance.CreateEnemy();
         anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         if(playTime > stageTime && !tellingStory)
         {
             tellingStory = true;
+            source.PlayOneShot(ruidoLlamada);
             anim.SetBool("StartTransition", true);
             map.parallaxVelocity = new Vector2(0, .3f);
             if(stage == 5) SceneLoader.Instance.NextScene();
@@ -83,5 +87,10 @@ public class GameManager : MonoBehaviour
         enemy.speed += 0.1f;
         enemyCooldown -= 0.1f;
         stage++;
+    }
+
+    public void cutRingtone()
+    {
+        source.Stop();
     }
 }

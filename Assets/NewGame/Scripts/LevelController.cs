@@ -24,13 +24,6 @@ public class LevelController : MonoBehaviour
         test.transform.position = new Vector3(spawnPosition, 20, 0);
 
         Instantiate(test, test.transform.position, test.transform.rotation);
-
-        /*while(!test.canSpawn)
-        {
-            spawnPosition = GetSpawnPoint();
-
-            test.transform.position = new Vector3(spawnPosition, 11, 0);
-        }*/
     }
 
     private int GetSpawnPoint()
