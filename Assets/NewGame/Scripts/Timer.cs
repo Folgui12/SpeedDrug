@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     private float restante;
 
     public Walter_Open_World walter;
+    public GameObject avisoWalter;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         if(restante > 0) restante -= Time.deltaTime; 
+        if(restante < 1) avisoWalter.SetActive(true);
         if(restante < 1 && walter.tries > 0 && walter.onSafeArea)
         {
             SceneLoader.Instance.Win();

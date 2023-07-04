@@ -35,12 +35,15 @@ public class Walter_Open_World : MonoBehaviour
     public int tries = 3;
 
     public Image bar;
-    public GameObject w1;
-    public GameObject w2;
 
     private float maxLife = 5;
 
     public bool onSafeArea = false;
+
+    public Text textTries;
+    public GameObject pu1;
+    public GameObject pu2;
+    public bool canUseBoost = false;
     
 
     // Start is called before the first frame update
@@ -50,6 +53,7 @@ public class Walter_Open_World : MonoBehaviour
         anim = GetComponent<Animator>();
         smoke1.Stop();
         smoke2.Stop();
+        textTries.text = tries.ToString();
     }
 
     void FixedUpdate()
@@ -87,6 +91,13 @@ public class Walter_Open_World : MonoBehaviour
                 canBeHit = true;
             }
 
+        }
+
+        if(canUseBoost && (pu1.activeInHierarchy || pu2.activeInHierarchy) && Input.GetKey(KeyCode.W) && !imBoosted) {
+            ApplyBoost();
+
+            if(pu1.activeInHierarchy && !pu2.activeInHierarchy) pu1.SetActive(false);
+            else if(pu2.activeInHierarchy) pu2.SetActive(false);
         }
 
         LifeBarManager();
@@ -163,8 +174,7 @@ public class Walter_Open_World : MonoBehaviour
             speed = 15;
             smoke2.Stop();
             tries--;
-            if(tries == 2) w1.SetActive(false);
-            else if(tries == 1) w2.SetActive(false);
+            textTries.text = tries.ToString();
             if(tries == 0) SceneLoader.Instance.Lose();
         }
     }

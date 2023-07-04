@@ -39,7 +39,10 @@ public class PowerUp : MonoBehaviour
             {
                 Walter_Open_World pj = other.gameObject.GetComponent<Walter_Open_World>();
 
-                pj.ApplyBoost();
+                pj.canUseBoost = true;
+
+                if(!pj.pu1.activeInHierarchy) pj.pu1.SetActive(true);
+                else if(pj.pu1.activeInHierarchy && !pj.pu2.activeInHierarchy) pj.pu2.SetActive(true);
 
                 Destroy(this.gameObject);
             }
