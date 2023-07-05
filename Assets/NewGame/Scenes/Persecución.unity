@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949461609579888954, guid: 2799262ca61e34444a1cba2e94a26b93, type: 3}
       propertyPath: m_Volume
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7949461609579888954, guid: 2799262ca61e34444a1cba2e94a26b93, type: 3}
       propertyPath: MaxDistance
@@ -346,8 +346,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 30
+    m_Font: {fileID: 12800000, guid: b76ce476531fc8845ae7c47a74fe03f7, type: 3}
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -775,7 +775,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0034965277, y: -0.007443428}
+  m_Offset: {x: -0.006228745, y: -0.012907714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -786,7 +786,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8014982, y: 1.8006916}
+  m_Size: {x: 0.69767296, y: 1.7023306}
   m_EdgeRadius: 0
 --- !u!50 &1298816294
 Rigidbody2D:
@@ -827,9 +827,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 51670bd9da1b4ea4dbca108866a6f5d1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.04
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   leftCollider: {fileID: 532180368}
   car: {fileID: 1298816292}
   ruidoLlamada: {fileID: 8300000, guid: 9885f3eccec707f46a1a3e0b8e641294, type: 3}
+  motor: {fileID: 2018041874}
 --- !u!114 &1311127246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,6 +1415,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!82 &2018041874 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7949461609579888954, guid: 2799262ca61e34444a1cba2e94a26b93, type: 3}
+  m_PrefabInstance: {fileID: 253243664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7119430641945585859
 PrefabInstance:
   m_ObjectHideFlags: 0

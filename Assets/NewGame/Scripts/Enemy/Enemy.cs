@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     private int rand;
 
-    public float speed = 2f;
+    public float speed = .8f;
 
     // Start is called before the first frame update
     void Start()

@@ -64,7 +64,7 @@ public class WalterDialog : MonoBehaviour
 
     IEnumerator Typing()
     {
-        source.volume = 0.4f;
+        source.volume = 0.6f;
         if(walterSpeaking) source.PlayOneShot(hablaWalter);
         else source.PlayOneShot(hablaDeclan);
         foreach(char letter in dialogue[index].ToCharArray())

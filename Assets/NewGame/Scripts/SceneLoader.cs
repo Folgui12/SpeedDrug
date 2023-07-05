@@ -18,10 +18,7 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R) && SceneManager.GetActiveScene().buildIndex >= 3)
-        {
-            StartCoroutine(LoadLevel(0));
-        }
+        
     }
 
     public void NextScene()
@@ -48,8 +45,13 @@ public class SceneLoader : MonoBehaviour
     {
         transition.SetTrigger("FadeIn");
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void BackToMenu()
+    {
+        StartCoroutine(LoadLevel(0));
     }
 }

@@ -65,8 +65,10 @@ public class Walter_Open_World : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 1) * angle;
-        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 1) * angle;
+
+        soundManager.Instance.Play("Motor");
+        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 4) * angle;
+        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 4) * angle;
 
         if(imBoosted)
         {
@@ -95,6 +97,7 @@ public class Walter_Open_World : MonoBehaviour
 
         if(canUseBoost && (pu1.activeInHierarchy || pu2.activeInHierarchy) && Input.GetKey(KeyCode.W) && !imBoosted) {
             ApplyBoost();
+            soundManager.Instance.Play("Turbo");
 
             if(pu1.activeInHierarchy && !pu2.activeInHierarchy) pu1.SetActive(false);
             else if(pu2.activeInHierarchy) pu2.SetActive(false);
@@ -115,8 +118,17 @@ public class Walter_Open_World : MonoBehaviour
         {
             speed = 10;
             onWater = true;
+            
         }
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 4) 
+        {
+            soundManager.Instance.Play("Water");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -157,6 +169,7 @@ public class Walter_Open_World : MonoBehaviour
 
     public void lifeController()
     {
+        soundManager.Instance.Play("Crash");
         life--;
         if(life < 5 && life > 2)
         {

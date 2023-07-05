@@ -40,7 +40,6 @@ public class soundManager : MonoBehaviour
                 sound s = Array.Find(sounds, s => s.name == name);
                 if(s != null) 
                 {
-                    Debug.Log(s.clip);
                     s.audioSource.PlayOneShot(s.clip);
                 }
             }
@@ -70,7 +69,7 @@ public class soundManager : MonoBehaviour
 
         if(s.name == "Motor")
         {
-            float nexTimeToPlay = 1f;
+            float nexTimeToPlay = 2f;
             if(timeToPlay + nexTimeToPlay < Time.time)
             {   
                 timeToPlay = Time.time;

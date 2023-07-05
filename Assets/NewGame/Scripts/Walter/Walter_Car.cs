@@ -47,8 +47,6 @@ public class Walter_Car : MonoBehaviour
             recoveryTime = 0;
         }
 
-        if(life <= 0) Debug.Log("Perdiste");
-
         transform.Translate(carMovement);
 
         if(transform.position.y < -10f && move) 
@@ -59,18 +57,7 @@ public class Walter_Car : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == 8 && canBeHit)
-        {
-            life--;
-            canBeHit = false;
-        }
-        if(other.gameObject.layer == 4) speed = 7;
         if(other.gameObject.tag == "Lose") SceneLoader.Instance.Lose();
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if(other.gameObject.layer == 4) speed = 20;
     }
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
