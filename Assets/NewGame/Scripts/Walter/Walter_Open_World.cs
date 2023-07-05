@@ -184,6 +184,7 @@ public class Walter_Open_World : MonoBehaviour
         {
             life = 5;
             transform.position = spawnPoint.position;
+            transform.eulerAngles = new Vector3(0, 0, 0);
             speed = 15;
             smoke2.Stop();
             tries--;

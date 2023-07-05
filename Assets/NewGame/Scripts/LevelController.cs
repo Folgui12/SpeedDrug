@@ -30,7 +30,7 @@ public class LevelController : MonoBehaviour
     {
         int aux = 0;
 
-        random = Random.Range(0, 6);
+        random = Random.Range(0, 7);
 
         switch(random)
         {
@@ -51,6 +51,9 @@ public class LevelController : MonoBehaviour
                 break;
             case 5:
                 aux = 5;
+                break;
+            case 6:
+                aux = 0;
                 break;
             default:
                 break;

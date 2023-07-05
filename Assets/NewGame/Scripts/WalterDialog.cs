@@ -9,7 +9,7 @@ public class WalterDialog : MonoBehaviour
     public Text dialogueText;
     public string[] dialogue;
     private string[] dialogue2 = {"Declan:- Detente ya.",
-"Walter:- Te dire que ocurrirá si no lo hago: a 2 km se encuentra un pueblo, en el cual entraré y continuaré alejándome de ti. Vos tenes dos opciones: detenerte y evitar desastres, o perseguirme y poner en riesgo la vida de muchos ciudadanos. Tu eliges Declan.",
+"Walter:- Te dire que ocurrirá si no lo hago: a dos kilometros se encuentra un pueblo, en el cual entraré y continuaré alejándome de ti. Vos tenes dos opciones: detenerte y evitar desastres, o perseguirme y poner en riesgo la vida de muchos ciudadanos. Tu eliges Declan.",
 "Declan:-  ¿Intentas convencerme de que si alguien muere será mi culpa? ¿Qué clase de manipulación es esa Heisenberg? Necesitarás mucho más que eso para hacer que me detenga.",
 "Walter:- Mirenlo, el pequeño Declan no tiene miedo de mancharse las manos. Estoy ansioso por verlo.",
 "Declan:- No me das miedo.",
