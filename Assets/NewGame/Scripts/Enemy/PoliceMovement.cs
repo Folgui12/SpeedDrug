@@ -93,10 +93,9 @@ public class PoliceMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        if(collisionInfo.gameObject.layer == 8)
+        if(collisionInfo.gameObject.layer == 7)
         {
-            /*MUERTE: Hacer un cambio de escena donde se muestre al enemigo muy 
-            cerca de la cámara a modo de screamer, con gritos de fondo*/
+            reachWalter();
         }
     }
 
@@ -114,5 +113,15 @@ public class PoliceMovement : MonoBehaviour
         Debug.Log("freno");
         touchWalter = true;
         speed = 10;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 4) speed = 10;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 4) speed = 15;
     }
 }

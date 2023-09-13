@@ -67,8 +67,8 @@ public class Walter_Open_World : MonoBehaviour
     {
 
         soundManager.Instance.Play("Motor");
-        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 4) * angle;
-        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 4) * angle;
+        if(Input.GetKey(KeyCode.D)) transform.eulerAngles -= new Vector3(0, 0, 1) * angle;
+        if(Input.GetKey(KeyCode.A)) transform.eulerAngles += new Vector3(0, 0, 1) * angle;
 
         if(imBoosted)
         {

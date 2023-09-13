@@ -51,8 +51,22 @@ public class EnemyOpenWorld : MonoBehaviour
 
     public void reachWalter()
     {
-        Debug.Log("freno");
         touchWalter = true;
         speed = 10;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 4) speed = 10;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 4) speed = 15;
+    }
+
+    void OnCollisionEnter2D(Collision2D collisionInfo)
+    {
+        if(collisionInfo.gameObject.layer == 7) reachWalter();
     }
 }
